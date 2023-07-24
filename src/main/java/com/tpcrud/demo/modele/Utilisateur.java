@@ -2,9 +2,12 @@ package com.tpcrud.demo.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Utilisateur {
@@ -13,9 +16,16 @@ public class Utilisateur {
     private Long id;
     @Column
     private String nom;
+
+    @Column
+    private String prenom;
+    @Column
+    private String telephone;
+    @Column
+    private String motdepass;
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
-    private List<Quiz> quiz=new ArrayList<>();
+    private List<Quiz> quiz = new ArrayList<>();
 
     public Utilisateur(Long id, String nom, String prenom, String telephone, String motdepass) {
         this.id = id;
@@ -69,11 +79,5 @@ public class Utilisateur {
         this.motdepass = motdepass;
     }
 
-    @Column
-    private String prenom;
-    @Column
-    private String telephone;
-    @Column
-    private String motdepass;
 
 }

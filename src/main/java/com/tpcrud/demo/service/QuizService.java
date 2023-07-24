@@ -17,4 +17,6 @@ public interface QuizService {
     Quiz modifier(long id, Quiz quiz);
 
     String supprimer(long id);
+
+
 }

@@ -18,13 +18,11 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Questions> questions;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
     public Quiz(Utilisateur utilisateur) {
-
-
         this.utilisateur = utilisateur;
     }
 
